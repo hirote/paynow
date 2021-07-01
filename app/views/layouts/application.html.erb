@@ -12,6 +12,16 @@
 
   <body>
     <%= yield %>
+    <nav>
+      <% if usuario_signed_in?%>
+        <%= current_usuario.email %>
+        <%= link_to 'Sair', destroy_usuario_session_path, method: :delete %>
+        <a href="<%= root_path %>" class="" data-method="delete">Inicio</a>
+      <% else %>
+          <%= link_to 'Logar', new_usuario_session_path %>
+          <%= link_to 'Criar conta', new_usuario_registration_path %>
+      <% end %>
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </body>

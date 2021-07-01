@@ -1,2 +1,0 @@
-class Adpay < ApplicationRecord
-end

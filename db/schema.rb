@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_014301) do
-
-  create_table "adpays", force: :cascade do |t|
-    t.string "nome"
-    t.string "email"
-    t.string "senha"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2021_07_01_192220) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "token"
@@ -65,15 +57,27 @@ ActiveRecord::Schema.define(version: 2021_07_01_014301) do
     t.index ["pagamento_id"], name: "index_produtos_on_pagamento_id"
   end
 
+  create_table "usuarios", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_usuarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+  end
+
   create_table "vendedors", force: :cascade do |t|
     t.string "nome"
-    t.string "email"
-    t.string "senha"
     t.string "cpf"
     t.integer "empresa_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "usuario_id", null: false
     t.index ["empresa_id"], name: "index_vendedors_on_empresa_id"
+    t.index ["usuario_id"], name: "index_vendedors_on_usuario_id"
   end
 
   add_foreign_key "clientes", "empresas"
@@ -81,4 +85,5 @@ ActiveRecord::Schema.define(version: 2021_07_01_014301) do
   add_foreign_key "produtos", "empresas"
   add_foreign_key "produtos", "pagamentos"
   add_foreign_key "vendedors", "empresas"
+  add_foreign_key "vendedors", "usuarios"
 end

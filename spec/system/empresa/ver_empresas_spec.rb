@@ -1,18 +1,16 @@
 require 'rails_helper'
 
-describe 'adpay ve empresa' do
+describe 'visitante ve empresa' do
   it 'sucesso' do
     Empresa.create!(cnpj:'XX. XXX. XXX/0001-XX',
       				razao_social:'Loja A LTDA',
       				endereco:'Rua de mão unica',
       				email_faturamento:'Loja@A.br',
-      				email_dominio:'A.br',
       				token:'0000000000A000000000')
     Empresa.create!(cnpj:'XX. XXX. XXX/0003-XX',
       				razao_social:'Loja B LTDA',
       				endereco:'Rua de mão dupla',
       				email_faturamento:'Loja@B.br',
-      				email_dominio:'B.br',
       				token:'0000000000B000000000')
     
 
@@ -32,13 +30,11 @@ describe 'adpay ve empresa' do
               razao_social:'Loja A LTDA',
               endereco:'Rua de mão unica',
               email_faturamento:'Loja@A.br',
-              email_dominio:'A.br',
               token:'0000000000A000000000')
     Empresa.create!(cnpj:'XX. XXX. XXX/0003-XX',
               razao_social:'Loja B LTDA',
               endereco:'Rua de mão dupla',
               email_faturamento:'Loja@B.br',
-              email_dominio:'B.br',
               token:'0000000000B000000000')
 
     visit root_path
@@ -64,7 +60,6 @@ describe 'adpay ve empresa' do
               razao_social:'Loja A LTDA',
               endereco:'Rua de mão unica',
               email_faturamento:'Loja@A.br',
-              email_dominio:'A.br',
               token:'0000000000A000000000')
 
     visit root_path
@@ -79,7 +74,6 @@ describe 'adpay ve empresa' do
               razao_social:'Loja A LTDA',
               endereco:'Rua de mão unica',
               email_faturamento:'Loja@A.br',
-              email_dominio:'A.br',
               token:'0000000000A000000000')
 
     visit root_path
