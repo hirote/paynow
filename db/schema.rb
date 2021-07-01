@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_230118) do
+ActiveRecord::Schema.define(version: 2021_07_01_014301) do
 
   create_table "adpays", force: :cascade do |t|
     t.string "nome"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2021_06_27_230118) do
     t.string "senha"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "clientes", force: :cascade do |t|
+    t.string "token"
+    t.integer "vendedor_id", null: false
+    t.integer "empresa_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["empresa_id"], name: "index_clientes_on_empresa_id"
+    t.index ["vendedor_id"], name: "index_clientes_on_vendedor_id"
   end
 
   create_table "empresas", force: :cascade do |t|
@@ -42,4 +52,33 @@ ActiveRecord::Schema.define(version: 2021_06_27_230118) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "produtos", force: :cascade do |t|
+    t.string "nome"
+    t.decimal "valor"
+    t.string "token"
+    t.decimal "desconto"
+    t.integer "pagamento_id", null: false
+    t.integer "empresa_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["empresa_id"], name: "index_produtos_on_empresa_id"
+    t.index ["pagamento_id"], name: "index_produtos_on_pagamento_id"
+  end
+
+  create_table "vendedors", force: :cascade do |t|
+    t.string "nome"
+    t.string "email"
+    t.string "senha"
+    t.string "cpf"
+    t.integer "empresa_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["empresa_id"], name: "index_vendedors_on_empresa_id"
+  end
+
+  add_foreign_key "clientes", "empresas"
+  add_foreign_key "clientes", "vendedors"
+  add_foreign_key "produtos", "empresas"
+  add_foreign_key "produtos", "pagamentos"
+  add_foreign_key "vendedors", "empresas"
 end

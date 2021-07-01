@@ -1,0 +1,13 @@
+<h1><%= @empresa.razao_social %></h1>
+<dl>
+	<dt>CNPJ</dt>
+	<dd><%=@empresa.cnpj %></dd>
+	<dt>Endereço</dt>
+	<dd><%=@empresa.endereco%></dd>
+	<dt>Email de faturamento</dt>
+	<dd><%=@empresa.email_faturamento %></dd>
+	<dt>Token</dt>
+	<dd><%=@empresa.token%></dd>
+</dl>
+
+<%=link_to 'Voltar',empresas_path %>
