@@ -25,7 +25,7 @@ describe 'visitante ve empresa' do
     expect(page).to have_content('Loja@B.br')
   end
 
-  it 'visualizou detalhes' do
+  it ' usuario visualizou detalhes' do
     Empresa.create!(cnpj:'XX. XXX. XXX/0001-XX',
               razao_social:'Loja A LTDA',
               endereco:'Rua de mão unica',
@@ -36,6 +36,7 @@ describe 'visitante ve empresa' do
               endereco:'Rua de mão dupla',
               email_faturamento:'Loja@B.br',
               token:'0000000000B000000000')
+    
 
     visit root_path
     click_on 'Empresas'

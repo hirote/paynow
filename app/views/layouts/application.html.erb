@@ -9,10 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <%= yield %>
-    <nav>
+  <nav>
       <% if usuario_signed_in?%>
         <%= current_usuario.email %>
         <%= link_to 'Sair', destroy_usuario_session_path, method: :delete %>
@@ -22,6 +19,8 @@
           <%= link_to 'Criar conta', new_usuario_registration_path %>
       <% end %>
     </nav>
+  <body>
+    <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </body>
